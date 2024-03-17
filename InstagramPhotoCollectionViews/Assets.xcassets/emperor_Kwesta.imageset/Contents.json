@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "CFD27189-0F44-40A4-A355-26381B15417D.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
