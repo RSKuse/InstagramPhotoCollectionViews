@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PostsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    let spacing: CGFloat = 1
+    
     lazy var imagesCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical // Change to vertical scrolling
-        flowLayout.minimumLineSpacing = 8 // Spacing between rows
-        flowLayout.minimumInteritemSpacing = 8 // Spacing between items in the same row
+        flowLayout.minimumLineSpacing = spacing // Spacing between rows
+        flowLayout.minimumInteritemSpacing = spacing // Spacing between items in the same row
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.isPagingEnabled = true
         collectionView.delegate = self
@@ -24,24 +26,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor.white
         setupConstraints()
         registerCollectionCells()
     }
     
     func setupConstraints() {
         view.addSubview(imagesCollectionView)
-
         imagesCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         imagesCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        imagesCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        imagesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        imagesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        imagesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     func registerCollectionCells() {
-        imagesCollectionView.register(InstagramCollectionCell.self, forCellWithReuseIdentifier: "InstagramCollectionCellID")
+        imagesCollectionView.register(PostCollectionCell.self, forCellWithReuseIdentifier: "PostCollectionCellID")
     }
-
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -52,15 +52,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let instaCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstagramCollectionCellID", for: indexPath) as! InstagramCollectionCell
-//        instaCollectionCell.instaImageView.image = UIImage(named: "sir_NastyC")
+        let instaCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionCellID", for: indexPath) as! PostCollectionCell
         return instaCollectionCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Calculate cell size based on the number of items per row and spacing
         let numberOfItemsPerRow: CGFloat = 3
-        let spacing: CGFloat = 8
         let totalSpacing = (2 * spacing) + ((numberOfItemsPerRow - 1) * spacing)
         let cellWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
         return CGSize(width: cellWidth, height: cellWidth)

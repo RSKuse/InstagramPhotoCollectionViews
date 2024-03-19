@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class InstagramCollectionCell: UICollectionViewCell {
+class PostCollectionCell: UICollectionViewCell {
     
     lazy var instaImageView: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +22,6 @@ class InstagramCollectionCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
         setupView()
     }
  

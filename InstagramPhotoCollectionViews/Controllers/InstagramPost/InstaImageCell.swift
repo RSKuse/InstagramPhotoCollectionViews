@@ -21,7 +21,6 @@ class InstaImageCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .black
         setupUI()
     }
 
@@ -30,7 +29,7 @@ class InstaImageCell: UICollectionViewCell {
         imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         imageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
      }
     
 
