@@ -42,30 +42,35 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         imagesCollectionView.register(InstagramCollectionCell.self, forCellWithReuseIdentifier: "InstagramCollectionCellID")
     }
 
-    // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return 21
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let instaCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstagramCollectionCellID", for: indexPath) as! InstagramCollectionCell
-        instaCollectionCell.instaImageView.image = UIImage(named: "sir_NastyC")
+//        instaCollectionCell.instaImageView.image = UIImage(named: "sir_NastyC")
         return instaCollectionCell
     }
-
-    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Calculate cell size based on the number of items per row and spacing
         let numberOfItemsPerRow: CGFloat = 3
         let spacing: CGFloat = 8
-        //let totalSpacing = (2 * spacing) + ((numberOfItemsPerRow - 1) * spacing)
-        let cellWidth = (collectionView.bounds.width - 16) / numberOfItemsPerRow
+        let totalSpacing = (2 * spacing) + ((numberOfItemsPerRow - 1) * spacing)
+        let cellWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
         return CGSize(width: cellWidth, height: cellWidth)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let postViewController = InstagramPostViewController()
+        navigationController?.pushViewController(postViewController, animated: true)
+    }
 }
+    
+    
+
